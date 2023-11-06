@@ -1,5 +1,5 @@
 import React from "react";
-import { AiFillEdit, AiFillLinkedin, AiFillFacebook } from "react-icons/ai";
+import { AiFillEdit, AiFillLinkedin } from "react-icons/ai";
 import Photo from "@/assets/rakib.jpg";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,14 +20,10 @@ const Profie = () => {
           <p className="text-sm text-neutral pb-2">
             Full Stack Developer - XYZ Company
           </p>
-          <div className="flex justify-center md:justify-start gap-2">
-            <Link href="#" className="text-2xl hover:text-primary ">
-              <AiFillLinkedin />
-            </Link>
-            <Link href="#" className="text-2xl hover:text-primary ">
-              <AiFillFacebook />
-            </Link>
-          </div>
+
+          <Link href="#" className="text-2xl hover:text-primary ">
+            <AiFillLinkedin />
+          </Link>
         </div>
         <p className="pt-4 text-sm">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. In quam
@@ -63,9 +59,11 @@ const Profie = () => {
             </tr>
           </tbody>
         </table>
-        <button className="btn btn-sm mt-10">
-          <AiFillEdit /> Edit Profile
-        </button>
+        <Link href="edit/20311230">
+          <button className="btn btn-sm mt-10">
+            <AiFillEdit /> Edit Profile
+          </button>
+        </Link>
       </div>
     </div>
   );

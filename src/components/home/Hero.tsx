@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
@@ -12,9 +13,11 @@ const Hero = () => {
         eaque excepturi vel consectetur ratione aspernatur incidunt. Harum
         reiciendis, velit repellat maxime sequi dicta.
       </p>
-      <button className="btn btn-sm">
-        Main website <AiOutlineArrowRight />
-      </button>
+      <Link href="https://vu.edu.bd/" target="_blank">
+        <button className="btn btn-sm">
+          Main website <AiOutlineArrowRight />
+        </button>
+      </Link>
     </div>
   );
 };

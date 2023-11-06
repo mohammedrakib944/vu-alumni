@@ -24,6 +24,9 @@
   .badge {
     @apply text-[11px] font-semibold py-2;
   }
+  .inputs {
+    @apply border py-2 px-4 w-full focus:outline-gray-400 text-sm;
+  }
   .homeLayout {
     @apply max-w-[1100px] px-4 mx-auto;
   }

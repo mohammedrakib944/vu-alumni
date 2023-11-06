@@ -6,7 +6,7 @@ import Link from "next/link";
 const Card = () => {
   return (
     <div className="max-w-[400px] flex flex-col items-center border rounded-2xl p-4 group mt-5 md:mt-20">
-      <Link href="/rakib">
+      <Link href="/user/rakib">
         <Image
           src={Photo}
           className="w-[100px] h-[100px] md:w-[180px] md:h-[180px] object-cover rounded-full border-2 -mt-10 md:-mt-20 shadow-lg group-hover:shadow-none shadow-black/20 hover:cursor-pointer duration-200 grayscale group-hover:border-primary group-hover:scale-105 group-hover:filter-none"
@@ -14,7 +14,7 @@ const Card = () => {
         />
       </Link>
       <div className="text-center">
-        <Link href="/rakib">
+        <Link href="/user/rakib">
           <h4 className="pt-5 md:text-lg group-hover:text-primary duration-150 cursor-pointer">
             Md.Rakibuzzaman
           </h4>

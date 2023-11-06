@@ -13,7 +13,7 @@ const Navbar = () => {
           </h3>
         </Link>
         <ul className="font-semibold flex items-center gap-3 md:gap-6 text-sm">
-          <li>
+          {/* <li>
             <Link
               className="hover:text-primary duration-200 text-primary"
               href="#"
@@ -30,12 +30,14 @@ const Navbar = () => {
             <Link className="hover:text-primary duration-200" href="#">
               About
             </Link>
-          </li>
+          </li> */}
         </ul>
         <div>
-          <button className="btn btn-sm">
-            Sign In <AiOutlineArrowRight />
-          </button>
+          <Link href="/login">
+            <button className="btn btn-sm">
+              Sign In <AiOutlineArrowRight />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

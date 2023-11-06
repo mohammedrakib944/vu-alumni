@@ -12,7 +12,7 @@ const Navbar = () => {
             <span className="text-lg">-Alumni</span>
           </h3>
         </Link>
-        <ul className="font-semibold flex items-center gap-6 text-sm">
+        <ul className="font-semibold flex items-center gap-3 md:gap-6 text-sm">
           <li>
             <Link
               className="hover:text-primary duration-200 text-primary"

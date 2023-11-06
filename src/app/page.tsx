@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <div className="flex justify-between mb-5">
+      <div className="flex justify-between items-center mb-5">
         <h4>ALUMNI LIST</h4>
         <select
           className="select select-bordered select-sm w-[200px]"

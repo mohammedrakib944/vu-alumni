@@ -6,26 +6,28 @@ import Link from "next/link";
 
 const Profie = () => {
   return (
-    <div className="min-h-screen flex justify-center py-10">
-      <div className="border-r pr-10">
+    <div className="min-h-screen md:flex md:justify-center py-10">
+      <div className="md:border-r md:pr-10">
         <Image
           src={Photo}
-          className="w-[300px] rounded-3xl border border-accent shadow-xl md:sticky md:top-28"
+          className="w-[300px] mx-auto rounded-3xl border border-accent shadow-xl md:sticky md:top-28"
           alt="Md Rakib"
         />
       </div>
-      <div className="w-[400px] pl-10">
-        <h3 className="mt-2">Md.Rakibuzzaman</h3>
-        <p className="text-sm text-neutral pb-2">
-          Full Stack Developer - XYZ Company
-        </p>
-        <div className="flex gap-2">
-          <Link href="#" className="text-2xl hover:text-primary ">
-            <AiFillLinkedin />
-          </Link>
-          <Link href="#" className="text-2xl hover:text-primary ">
-            <AiFillFacebook />
-          </Link>
+      <div className="w-full md:w-[400px] px-4 md:px-0 md:pl-10">
+        <div className="text-center md:text-left">
+          <h3 className="mt-5 md:mt-2">Md.Rakibuzzaman</h3>
+          <p className="text-sm text-neutral pb-2">
+            Full Stack Developer - XYZ Company
+          </p>
+          <div className="flex justify-center md:justify-start gap-2">
+            <Link href="#" className="text-2xl hover:text-primary ">
+              <AiFillLinkedin />
+            </Link>
+            <Link href="#" className="text-2xl hover:text-primary ">
+              <AiFillFacebook />
+            </Link>
+          </div>
         </div>
         <p className="pt-4 text-sm">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. In quam

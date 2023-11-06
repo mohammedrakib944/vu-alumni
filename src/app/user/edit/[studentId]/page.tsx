@@ -165,10 +165,10 @@ const EditUser = () => {
         </div>
         <div className="w-full flex items-center gap-3 justify-center mt-6">
           <button type="submit" className="btn btn-sm">
-            Register <AiOutlineLogin />
+            Update <AiOutlineLogin />
           </button>
-          <Link className="text-center btn btn-sm bg-gray-500" href="/login">
-            Login
+          <Link className="text-center btn btn-sm bg-gray-500" href="/">
+            Cancle
           </Link>
         </div>
       </form>

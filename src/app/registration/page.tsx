@@ -1,23 +1,31 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineLogin } from "react-icons/ai";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
+import Input from "@/components/common/Input";
+import toast, { Toaster } from "react-hot-toast";
+import axiosBase from "@/axios/baseURL";
 
 type Inputs = {
-  fullname: string;
-  jobPossition: string;
-  linkedin: string;
-  bio: string;
-  studentId: number;
+  studentId: string;
+  name: string;
   mobile: string;
-  deptName: string;
-  batch: number;
-  programName: string;
+  password: string;
+  photo: string;
+  studentEmail: string;
+  personalEmail: string;
   gender: string;
+  deptName: string;
+  programName: string;
+  bloodGroup: string;
+  startSession: string;
+  endSession: string;
+  batch: Number;
 };
 
 const Registration = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -25,128 +33,90 @@ const Registration = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("Form data: ", data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setIsLoading(true);
+    try {
+      const res = await axiosBase.post("/user", data);
+      setIsLoading(false);
+      toast.success("User created success!");
+      reset();
+    } catch (error) {
+      toast.error("User creation fail!");
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="max-w-[400px] min-h-[calc(100vh-123px)] mx-auto">
+      <Toaster />
       <h2 className="pt-8 text-center border-b pb-2">Create Account</h2>
       <form className="my-6" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Name</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("fullname", { required: "Name is required" })}
-            placeholder="Full name"
-          />
-          {errors.fullname && (
-            <span className="text-xs text-red-600">
-              {errors.fullname?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Current Position</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("jobPossition", { required: false })}
-            placeholder="Developer"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Linkedin</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("linkedin", { required: false })}
-            placeholder="URL"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Bio</label>
-          <textarea
-            className="inputs"
-            {...register("bio", { required: false })}
-            placeholder="I am ..."
-          ></textarea>
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Student ID</label>
-          <input
-            type="number"
-            className="inputs"
-            {...register("studentId", { required: "Student Id is Required!" })}
-            placeholder="xxxxxxxx"
-          />
-          {errors.studentId && (
-            <span className="text-xs text-red-600">
-              {errors.studentId?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Mobile</label>
-          <input
-            type="number"
-            className="inputs"
-            {...register("mobile", { required: "Mobile number is Required!" })}
-            placeholder="01xxxxxxx"
-          />
-          {errors.mobile && (
-            <span className="text-xs text-red-600">
-              {errors.mobile?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Dept. Name</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("deptName", {
-              required: "Department name is Required!",
-            })}
-            placeholder="CSE"
-          />
-          {errors.deptName && (
-            <span className="text-xs text-red-600">
-              {errors.deptName?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Batch</label>
-          <input
-            type="number"
-            className="inputs"
-            {...register("batch", { required: "Batch NO is Required!" })}
-            placeholder="23"
-          />
-          {errors.batch && (
-            <span className="text-xs text-red-600">
-              {errors.batch?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Program Name</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("programName", {
-              required: "Program name is Required!",
-            })}
-            placeholder="BSc in CSE"
-          />
-          {errors.programName && (
-            <span className="text-xs text-red-600">
-              {errors.programName?.message}
-            </span>
-          )}
-        </div>
+        <Input
+          label="Student ID"
+          name="studentId"
+          register={register}
+          errors={errors}
+        />
+        <Input label="Name" name="name" register={register} errors={errors} />
+        <Input
+          label="Mobile"
+          name="mobile"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Password"
+          name="password"
+          register={register}
+          errors={errors}
+        />
+        <Input label="Photo" name="photo" register={register} errors={errors} />
+        <Input
+          type="email"
+          label="Student Email"
+          name="studentEmail"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          type="email"
+          label="Personal Email"
+          name="personalEmail"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Department Name"
+          name="deptName"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Program Name"
+          name="programName"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Blood Group"
+          name="bloodGroup"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Start Session"
+          name="startSession"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="End Session"
+          name="endSession"
+          register={register}
+          errors={errors}
+        />
+        <Input label="Batch" name="batch" register={register} errors={errors} />
+
         <div className="mb-3">
           <label className="text-sm pb-1">Gender</label>
           <select
@@ -159,7 +129,7 @@ const Registration = () => {
           </select>
         </div>
         <div className="w-full flex items-center gap-3 justify-center mt-6">
-          <button type="submit" className="btn btn-sm">
+          <button type="submit" className="btn btn-sm" disabled={isLoading}>
             Register <AiOutlineLogin />
           </button>
           <Link className="text-center btn btn-sm bg-gray-500" href="/login">

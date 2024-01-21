@@ -29,7 +29,7 @@ const Profie = ({ params }: any) => {
     <div className="min-h-screen md:flex md:justify-center py-10">
       <div className="md:border-r md:pr-10">
         <img
-          src={user?.photo || "/img/avatar.png"}
+          src={user?.photo || `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`}
           className="w-[300px] min-h-[300px] mx-auto bg-gradient-to-tr from-primary to-green-400 rounded-3xl border border-black/30 shadow-xl md:sticky md:top-28"
           alt="Md Rakib"
         />

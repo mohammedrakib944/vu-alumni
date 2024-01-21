@@ -6,7 +6,7 @@ const Card = ({ user }: any) => {
     <div className="max-w-[400px] h-fit flex flex-col items-center border rounded-2xl p-4 group mt-5 md:mt-20">
       <Link href={`/user/${user?._id}`}>
         <img
-          src={user?.photo || "/img/avatar.png"}
+          src={user?.photo || `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`}
           className="w-[100px] h-[100px] bg-gradient-to-tr from-primary to-green-400 md:w-[180px] md:h-[180px] object-cover rounded-full border-2 -mt-10 md:-mt-20 shadow-lg group-hover:shadow-none shadow-black/20 hover:cursor-pointer duration-200 group-hover:border-primary group-hover:scale-105 group-hover:filter-none"
           alt="Rakib"
         />

@@ -36,7 +36,7 @@ const Registration = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
     try {
-      const res = await axiosBase.post("/user", data);
+      await axiosBase.post("/user", data);
       setIsLoading(false);
       toast.success("User created success!");
       reset();

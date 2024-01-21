@@ -1,24 +1,33 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineLogin } from "react-icons/ai";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useEffect } from "react";
+import Input from "@/components/common/Input";
+import toast, { Toaster } from "react-hot-toast";
+import axiosBase from "@/axios/baseURL";
+import { useUser } from "@/context/userContext";
 
 type Inputs = {
-  fullname: string;
-  jobPossition: string;
-  linkedin: string;
-  bio: string;
-  studentId: number;
+  studentId: string;
+  name: string;
   mobile: string;
-  deptName: string;
-  batch: number;
-  programName: string;
+  password: string;
+  photo: string;
+  studentEmail: string;
+  personalEmail: string;
   gender: string;
+  deptName: string;
+  programName: string;
+  bloodGroup: string;
+  startSession: string;
+  endSession: string;
+  batch: Number;
 };
 
-const EditUser = () => {
+const Edit = () => {
+  const { user }: any = useUser();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -26,132 +35,108 @@ const EditUser = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("Form data: ", data);
-  };
-
   useEffect(() => {
-    reset({ fullname: "Rakibuzzaman", jobPossition: "Software Engineer" });
-  }, []);
+    reset(user);
+  }, [user]);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    setIsLoading(true);
+
+    let local_user: any = localStorage.getItem("user");
+    let token: any = localStorage.getItem("token");
+    local_user = JSON.parse(local_user);
+
+    if (user?._id !== local_user.id || !token) {
+      toast.error("You are not authorized!");
+      return;
+    }
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+
+    try {
+      await axiosBase.put("/user/" + user._id, data, { headers });
+      setIsLoading(false);
+      window.location.reload();
+    } catch (error) {
+      toast.error("User update fail!");
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-[400px] min-h-[calc(100vh-123px)] mx-auto">
-      <h2 className="pt-8 text-center border-b pb-2">Edit user data</h2>
+      <Toaster />
+      <h2 className="pt-8 text-center border-b pb-2">Create Account</h2>
       <form className="my-6" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Name</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("fullname", { required: "Name is required" })}
-            placeholder="Full name"
-          />
-          {errors.fullname && (
-            <span className="text-xs text-red-600">
-              {errors.fullname?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Current Position</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("jobPossition", { required: false })}
-            placeholder="Developer"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Linkedin</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("linkedin", { required: false })}
-            placeholder="URL"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Bio</label>
-          <textarea
-            className="inputs"
-            {...register("bio", { required: false })}
-            placeholder="I am ..."
-          ></textarea>
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Student ID</label>
-          <input
-            type="number"
-            className="inputs"
-            {...register("studentId", { required: "Student Id is Required!" })}
-            placeholder="xxxxxxxx"
-          />
-          {errors.studentId && (
-            <span className="text-xs text-red-600">
-              {errors.studentId?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Mobile</label>
-          <input
-            type="number"
-            className="inputs"
-            {...register("mobile", { required: "Mobile number is Required!" })}
-            placeholder="01xxxxxxx"
-          />
-          {errors.mobile && (
-            <span className="text-xs text-red-600">
-              {errors.mobile?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Dept. Name</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("deptName", {
-              required: "Department name is Required!",
-            })}
-            placeholder="CSE"
-          />
-          {errors.deptName && (
-            <span className="text-xs text-red-600">
-              {errors.deptName?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Batch</label>
-          <input
-            type="number"
-            className="inputs"
-            {...register("batch", { required: "Batch NO is Required!" })}
-            placeholder="23"
-          />
-          {errors.batch && (
-            <span className="text-xs text-red-600">
-              {errors.batch?.message}
-            </span>
-          )}
-        </div>
-        <div className="mb-3">
-          <label className="text-sm pb-1">Program Name</label>
-          <input
-            type="text"
-            className="inputs"
-            {...register("programName", {
-              required: "Program name is Required!",
-            })}
-            placeholder="BSc in CSE"
-          />
-          {errors.programName && (
-            <span className="text-xs text-red-600">
-              {errors.programName?.message}
-            </span>
-          )}
-        </div>
+        <Input
+          label="Student ID"
+          name="studentId"
+          register={register}
+          errors={errors}
+        />
+        <Input label="Name" name="name" register={register} errors={errors} />
+        <Input
+          label="Mobile"
+          name="mobile"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Password"
+          name="password"
+          register={register}
+          errors={errors}
+        />
+        <Input label="Photo" name="photo" register={register} errors={errors} />
+        <Input
+          type="email"
+          label="Student Email"
+          name="studentEmail"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          type="email"
+          label="Personal Email"
+          name="personalEmail"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Department Name"
+          name="deptName"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Program Name"
+          name="programName"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Blood Group"
+          name="bloodGroup"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="Start Session"
+          name="startSession"
+          register={register}
+          errors={errors}
+        />
+        <Input
+          label="End Session"
+          name="endSession"
+          register={register}
+          errors={errors}
+        />
+        <Input label="Batch" name="batch" register={register} errors={errors} />
+
         <div className="mb-3">
           <label className="text-sm pb-1">Gender</label>
           <select
@@ -164,7 +149,7 @@ const EditUser = () => {
           </select>
         </div>
         <div className="w-full flex items-center gap-3 justify-center mt-6">
-          <button type="submit" className="btn btn-sm">
+          <button type="submit" className="btn btn-sm" disabled={isLoading}>
             Update <AiOutlineLogin />
           </button>
           <Link className="text-center btn btn-sm bg-gray-500" href="/">
@@ -177,4 +162,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default Edit;

@@ -1,8 +1,16 @@
+"use client";
 import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Link from "next/link";
+import { useUser } from "@/context/userContext";
 
 const Navbar = () => {
+  const { user }: any = useUser();
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
   return (
     <div className="bg-white border-b z-20 sticky top-0">
       <div className="homeLayout py-[14px] flex items-center justify-between">
@@ -32,13 +40,44 @@ const Navbar = () => {
             </Link>
           </li> */}
         </ul>
-        <div>
-          <Link href="/login">
-            <button className="btn btn-sm">
-              Sign In <AiOutlineArrowRight />
-            </button>
-          </Link>
-        </div>
+        {user ? (
+          <div className="dropdown dropdown-hover dropdown-end">
+            <div tabIndex={0}>
+              <div className="flex gap-2">
+                <div className="text-right">
+                  <p className="text-sm font-semibold">{user?.name}</p>
+                  <p className="text-xs">{user?.personalEmail}</p>
+                </div>
+                <img
+                  src={user?.photo || "/img/avatar.png"}
+                  className="rounded-full w-10 h-10 border border-primary object-cover"
+                  alt="User Image"
+                />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 border rounded-lg w-52"
+            >
+              <li>
+                <Link href={"/user/" + user?._id}>
+                  <span>Profile</span>
+                </Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div>
+            <Link href="/login">
+              <button className="btn btn-sm">
+                Sign In <AiOutlineArrowRight />
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

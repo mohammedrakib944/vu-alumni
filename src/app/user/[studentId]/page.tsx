@@ -4,9 +4,11 @@ import { AiFillEdit, AiFillLinkedin } from "react-icons/ai";
 import Link from "next/link";
 import axiosBase from "@/axios/baseURL";
 import { useEffect, useState } from "react";
+import { useUser } from "@/context/userContext";
 
 const Profie = ({ params }: any) => {
   const [user, setUser] = useState<any>(null);
+  const [logedinUser, setLogedinUser] = useState<any>(null);
 
   const getData = async () => {
     try {
@@ -19,6 +21,9 @@ const Profie = ({ params }: any) => {
 
   useEffect(() => {
     getData();
+    let local_user: any = localStorage.getItem("user");
+    local_user = JSON.parse(local_user);
+    if (local_user) setLogedinUser(local_user);
   }, []);
   return (
     <div className="min-h-screen md:flex md:justify-center py-10">
@@ -96,11 +101,14 @@ const Profie = ({ params }: any) => {
             </tr>
           </tbody>
         </table>
-        <Link href="edit/20311230">
-          <button className="btn btn-sm mt-10">
-            <AiFillEdit /> Edit Profile
-          </button>
-        </Link>
+
+        {logedinUser && user && logedinUser?.id === user._id && (
+          <Link href={"edit/" + user._id}>
+            <button className="btn btn-sm mt-10">
+              <AiFillEdit /> Edit Profile
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

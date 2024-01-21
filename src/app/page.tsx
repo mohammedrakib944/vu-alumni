@@ -1,8 +1,22 @@
+"use client";
 import Card from "@/components/home/Card";
 import Hero from "@/components/home/Hero";
 import { AiOutlineDown } from "react-icons/ai";
+import axiosBase from "@/axios/baseURL";
+import { useEffect } from "react";
 
+const getData = async () => {
+  try {
+    const response = await axiosBase.get("/user");
+    console.log("Response: ", response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 export default function Home() {
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <main>
       <Hero />

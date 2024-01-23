@@ -60,7 +60,7 @@ const Login = () => {
         <p className="font-bold py-3 text-center">User login</p>
       </div>
       <form className="min-w-[360px]" onSubmit={handleLogin}>
-        <label className="text-sm">Personal Email</label>
+        <label className="text-sm">Email</label>
         <div className="flex gap-2 mt-1 items-center bg-white rounded-lg px-2 border mb-2">
           <span className="text-2xl  text-gray-500 border-r pr-2">
             <MdPerson />
@@ -69,7 +69,7 @@ const Login = () => {
             type="email"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
+            placeholder="email"
             className="focus:outline-none py-3 w-full"
           />
         </div>

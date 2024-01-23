@@ -37,7 +37,7 @@ const Profie = ({ params }: any) => {
       <div className="w-full md:w-[400px] px-4 md:px-0 md:pl-10">
         <div className="text-center md:text-left">
           <h3 className="mt-5 md:mt-2">{user?.name}</h3>
-          <p className="text-sm text-neutral pb-2">{user?.personalEmail}</p>
+          <p className="text-sm text-neutral pb-2">{user?.email}</p>
 
           {/* <Link href="#" className="text-2xl hover:text-primary ">
             <AiFillLinkedin />
@@ -57,11 +57,7 @@ const Profie = ({ params }: any) => {
             </tr>
             <tr>
               <td>Mobile</td>
-              <td className="font-bold text-gray-700">
-                {user?.mobile.map((num: any, index: number) => (
-                  <span key={index}>{num}</span>
-                ))}
-              </td>
+              <td className="font-bold text-gray-700">{user?.mobile}</td>
             </tr>
             <tr>
               <td>Dept. Name</td>
@@ -72,20 +68,16 @@ const Profie = ({ params }: any) => {
               <td className="font-bold text-gray-700">{user?.batch}</td>
             </tr>
             <tr>
-              <td>studentEmail</td>
+              <td>Student Email</td>
               <td className="font-bold text-gray-700">{user?.studentEmail}</td>
             </tr>
             <tr>
-              <td>personalEmail</td>
-              <td className="font-bold text-gray-700">{user?.personalEmail}</td>
+              <td>Email</td>
+              <td className="font-bold text-gray-700">{user?.email}</td>
             </tr>
             <tr>
-              <td>Start Session</td>
-              <td className="font-bold text-gray-700">{user?.startSession}</td>
-            </tr>
-            <tr>
-              <td>End Session</td>
-              <td className="font-bold text-gray-700">{user?.endSession}</td>
+              <td>Session</td>
+              <td className="font-bold text-gray-700">{user?.session}-{user?.sessionYear}</td>
             </tr>
             <tr>
               <td>Program Name</td>

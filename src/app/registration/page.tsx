@@ -10,18 +10,8 @@ import axiosBase from "@/axios/baseURL";
 type Inputs = {
   studentId: string;
   name: string;
-  mobile: string;
   password: string;
-  photo: string;
-  studentEmail: string;
-  personalEmail: string;
-  gender: string;
-  deptName: string;
-  programName: string;
-  bloodGroup: string;
-  startSession: string;
-  endSession: string;
-  batch: Number;
+  email: string;
 };
 
 const Registration = () => {
@@ -59,8 +49,9 @@ const Registration = () => {
         />
         <Input label="Name" name="name" register={register} errors={errors} />
         <Input
-          label="Mobile"
-          name="mobile"
+          type="email"
+          label="Personal Email"
+          name="email"
           register={register}
           errors={errors}
         />
@@ -70,64 +61,7 @@ const Registration = () => {
           register={register}
           errors={errors}
         />
-        <Input label="Photo" name="photo" register={register} errors={errors} />
-        <Input
-          type="email"
-          label="Student Email"
-          name="studentEmail"
-          register={register}
-          errors={errors}
-        />
-        <Input
-          type="email"
-          label="Personal Email"
-          name="personalEmail"
-          register={register}
-          errors={errors}
-        />
-        <Input
-          label="Department Name"
-          name="deptName"
-          register={register}
-          errors={errors}
-        />
-        <Input
-          label="Program Name"
-          name="programName"
-          register={register}
-          errors={errors}
-        />
-        <Input
-          label="Blood Group"
-          name="bloodGroup"
-          register={register}
-          errors={errors}
-        />
-        <Input
-          label="Start Session"
-          name="startSession"
-          register={register}
-          errors={errors}
-        />
-        <Input
-          label="End Session"
-          name="endSession"
-          register={register}
-          errors={errors}
-        />
-        <Input label="Batch" name="batch" register={register} errors={errors} />
-
-        <div className="mb-3">
-          <label className="text-sm pb-1">Gender</label>
-          <select
-            {...register("gender")}
-            className="select select-bordered  w-full rounded-none inputs"
-          >
-            <option value="male">male</option>
-            <option value="female">female</option>
-            <option value="other">other</option>
-          </select>
-        </div>
+        
         <div className="w-full flex items-center gap-3 justify-center mt-6">
           <button type="submit" className="btn btn-sm" disabled={isLoading}>
             Register <AiOutlineLogin />

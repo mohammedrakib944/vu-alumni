@@ -3,7 +3,7 @@ import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Search from "../common/Search";
 
-const Hero = () => {
+const Hero = ({ setUsers, getData }: any) => {
   return (
     <div className="py-20 flex flex-col items-center border-b mb-8">
       <h1 className="text-5xl font-extrabold text-center">
@@ -14,7 +14,7 @@ const Hero = () => {
         past students come to life. Connect, reminisce, and discover the diverse
         paths forged by our vibrant community.
       </p>
-      <Search />
+      <Search setUsers={setUsers} getData={getData} />
     </div>
   );
 };

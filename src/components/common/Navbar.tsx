@@ -47,7 +47,7 @@ const Navbar = () => {
               <div className="flex gap-2">
                 <div className="text-right">
                   <p className="text-sm font-semibold">{user?.name}</p>
-                  <p className="text-xs">{user?.personalEmail}</p>
+                  <p className="text-xs">{user?.email}</p>
                 </div>
                 <img
                   src={user?.photo || "/img/avatar.png"}

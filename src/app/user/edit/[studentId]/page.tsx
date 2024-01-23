@@ -15,7 +15,7 @@ type Inputs = {
   password: string;
   photo: string;
   studentEmail: string;
-  personalEmail: string;
+  email: string;
   gender: string;
   deptName: string;
   programName: string;
@@ -101,7 +101,7 @@ const Edit = () => {
         <Input
           type="email"
           label="Personal Email"
-          name="personalEmail"
+          name="email"
           register={register}
           errors={errors}
         />

@@ -27,7 +27,7 @@ export default function Home() {
   }, []);
   return (
     <main>
-      <Hero />
+      <Hero setUsers={setUsers} getData={getData} />
       <div className="flex justify-between gap-3 items-center mb-5">
         <div className="flex items-center gap-2 md:gap-5">
           <h4 className="text-sm md:text-base">ALUMNI LIST</h4>

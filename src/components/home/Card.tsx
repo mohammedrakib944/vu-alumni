@@ -18,7 +18,7 @@ const Card = ({ user }: any) => {
           </h4>
         </Link>
         <h6 className="text-xs md:text-sm font-bold mb-2">
-          {user?.personalEmail}
+          {user?.email}
         </h6>
         <p className="text-xs md:text-sm text-neutral pb-2">
           {user?.deptName} / {user?.batch}

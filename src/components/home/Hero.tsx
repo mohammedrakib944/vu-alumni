@@ -10,8 +10,9 @@ const Hero = () => {
         <span className="text-primary">VU</span> Alumni Portal
       </h1>
       <p className="max-w-[600px] mt-3 mb-8 text-neutral text-center">
-      Explore the VU Alumni Directory, where the journeys of past students come to life. 
-      Connect, reminisce, and discover the diverse paths forged by our vibrant community.
+        Explore the Varendra University Alumni Directory, where the journeys of
+        past students come to life. Connect, reminisce, and discover the diverse
+        paths forged by our vibrant community.
       </p>
       <Search />
     </div>

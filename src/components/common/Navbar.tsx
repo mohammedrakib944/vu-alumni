@@ -11,11 +11,12 @@ const Navbar = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
+
   return (
     <div className="bg-white border-b z-20 sticky top-0">
       <div className="homeLayout py-[14px] flex items-center justify-between">
         <Link href="/">
-          <h3 className="text-xl font-bold">
+          <h3 className="text-xl font-extrabold">
             <span className="text-primary">VU</span>
             <span className="text-lg">-Alumni</span>
           </h3>

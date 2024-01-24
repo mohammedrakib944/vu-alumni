@@ -20,8 +20,10 @@ const Navbar = () => {
         <Link href="/">
           <h3 className="text-xl font-extrabold flex items-center gap-2">
             <Image src={logo} width="30" alt="vu-logo" />
-            <span className="text-primary">VU</span>
-            <span className="text-lg">-Alumni</span>
+            <div>
+              <span className="text-primary">VU</span>
+              <span className="text-lg">-Alumni</span>
+            </div>
           </h3>
         </Link>
         <ul className="font-semibold flex items-center gap-3 md:gap-6 text-sm">

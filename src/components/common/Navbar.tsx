@@ -3,6 +3,8 @@ import React from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Link from "next/link";
 import { useUser } from "@/context/userContext";
+import logo from "@/assets/logo.jpg";
+import Image from "next/image";
 
 const Navbar = () => {
   const { user }: any = useUser();
@@ -14,9 +16,10 @@ const Navbar = () => {
 
   return (
     <div className="bg-white border-b z-20 sticky top-0">
-      <div className="homeLayout py-[14px] flex items-center justify-between">
+      <div className="homeLayout py-[10px] flex items-center justify-between">
         <Link href="/">
-          <h3 className="text-xl font-extrabold">
+          <h3 className="text-xl font-extrabold flex items-center gap-2">
+            <Image src={logo} width="30" alt="vu-logo" />
             <span className="text-primary">VU</span>
             <span className="text-lg">-Alumni</span>
           </h3>
@@ -50,7 +53,10 @@ const Navbar = () => {
                   <p className="text-xs">{user?.email}</p>
                 </div>
                 <img
-                  src={user?.photo || `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`}
+                  src={
+                    user?.photo ||
+                    `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`
+                  }
                   className="rounded-full w-10 h-10 border border-primary object-cover"
                   alt="User Image"
                 />

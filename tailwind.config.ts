@@ -11,7 +11,7 @@ const config: Config = {
     themes: [
       {
         blog: {
-          primary: "#0094FF",
+          primary: "#ff5600",
           secondary: "#0d1117",
           accent: "#d8d8d8",
           neutral: "#717066",

@@ -67,10 +67,13 @@ const Edit = () => {
   };
 
   return (
-    <div className="max-w-[400px] min-h-[calc(100vh-123px)] mx-auto">
+    <div className="max-w-[600px] min-h-[calc(100vh-123px)] mx-auto">
       <Toaster />
-      <h2 className="pt-8 text-center border-b pb-2">Create Account</h2>
-      <form className="my-6" onSubmit={handleSubmit(onSubmit)}>
+      <h2 className="pt-8 text-center border-b pb-2">Update Profile</h2>
+      <form
+        className="my-6 lg:grid lg:grid-cols-2 gap-x-4"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Input
           label="Student ID"
           name="studentId"
@@ -148,7 +151,7 @@ const Edit = () => {
             <option value="other">other</option>
           </select>
         </div>
-        <div className="w-full flex items-center gap-3 justify-center mt-6">
+        <div className="w-full col-span-2 flex items-center gap-3 justify-center mt-6">
           <Link className="text-center btn btn-sm bg-gray-500" href="/">
             Cancle
           </Link>

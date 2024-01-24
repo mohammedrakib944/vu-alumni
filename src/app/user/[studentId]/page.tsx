@@ -29,8 +29,11 @@ const Profie = ({ params }: any) => {
     <div className="min-h-screen md:flex md:justify-center py-10">
       <div className="md:border-r md:pr-10">
         <img
-          src={user?.photo || `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`}
-          className="w-[300px] min-h-[300px] mx-auto bg-gradient-to-tr from-primary to-green-400 rounded-3xl border border-black/30 shadow-xl md:sticky md:top-28"
+          src={
+            user?.photo ||
+            `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`
+          }
+          className="w-[300px] min-h-[300px] mx-auto bg-gradient-to-t from-primary to-primary/50 rounded-3xl shadow-xl md:sticky md:top-28"
           alt="Md Rakib"
         />
       </div>
@@ -77,7 +80,9 @@ const Profie = ({ params }: any) => {
             </tr>
             <tr>
               <td>Session</td>
-              <td className="font-bold text-gray-700">{user?.session}-{user?.sessionYear}</td>
+              <td className="font-bold text-gray-700">
+                {user?.session}-{user?.sessionYear}
+              </td>
             </tr>
             <tr>
               <td>Program Name</td>

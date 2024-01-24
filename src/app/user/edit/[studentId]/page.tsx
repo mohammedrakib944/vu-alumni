@@ -149,12 +149,12 @@ const Edit = () => {
           </select>
         </div>
         <div className="w-full flex items-center gap-3 justify-center mt-6">
-          <button type="submit" className="btn btn-sm" disabled={isLoading}>
-            Update <AiOutlineLogin />
-          </button>
           <Link className="text-center btn btn-sm bg-gray-500" href="/">
             Cancle
           </Link>
+          <button type="submit" className="btn btn-sm" disabled={isLoading}>
+            Update <AiOutlineLogin />
+          </button>
         </div>
       </form>
       <div className="h-[100px]"></div>

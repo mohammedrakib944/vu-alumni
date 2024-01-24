@@ -12,6 +12,7 @@ type Inputs = {
   name: string;
   password: string;
   email: string;
+  mobile: string;
 };
 
 const Registration = () => {
@@ -48,6 +49,7 @@ const Registration = () => {
           errors={errors}
         />
         <Input label="Name" name="name" register={register} errors={errors} />
+        <Input label="Mobile" name="mobile" register={register} errors={errors} />
         <Input
           type="email"
           label="Personal Email"
@@ -63,11 +65,20 @@ const Registration = () => {
         />
         
         <div className="w-full flex items-center gap-3 justify-center mt-6">
+          <Link className="text-center btn btn-sm bg-gray-500" href="/">
+            Cancle
+          </Link>
           <button type="submit" className="btn btn-sm" disabled={isLoading}>
             Register <AiOutlineLogin />
           </button>
-          <Link className="text-center btn btn-sm bg-gray-500" href="/login">
-            Login
+        </div>
+        <div className="text-sm text-center pt-8">
+          Already have an account?{" "}
+          <Link
+            className="text-primary underline hover:text-blue-600"
+            href="/login"
+          >
+            Login Here
           </Link>
         </div>
       </form>

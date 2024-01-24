@@ -50,7 +50,7 @@ const Navbar = () => {
                   <p className="text-xs">{user?.email}</p>
                 </div>
                 <img
-                  src={user?.photo || "/img/avatar.png"}
+                  src={user?.photo || `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`}
                   className="rounded-full w-10 h-10 border border-primary object-cover"
                   alt="User Image"
                 />

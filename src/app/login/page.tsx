@@ -96,12 +96,12 @@ const Login = () => {
           </button>
         </div>
         <div className="w-full flex items-center gap-3 justify-center mt-6">
-          <button type="submit" className="btn btn-sm" disabled={isLoading}>
-            Login <AiOutlineLogin />
-          </button>
           <Link className="text-center btn btn-sm bg-gray-500" href="/">
             Cancle
           </Link>
+          <button type="submit" className="btn btn-sm" disabled={isLoading}>
+            Login <AiOutlineLogin />
+          </button>
         </div>
         <div className="text-sm text-center pt-8">
           Don't have any account?{" "}

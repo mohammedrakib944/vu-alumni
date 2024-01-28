@@ -15,13 +15,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white border-b z-20 sticky top-0">
+    <div className="bg-primary/30 backdrop-blur-md z-20 sticky top-0">
       <div className="homeLayout py-[10px] flex items-center justify-between">
         <Link href="/">
           <h3 className="text-xl font-extrabold flex items-center gap-2">
             <Image src={logo} width="30" alt="vu-logo" />
             <div>
-              <span className="text-primary">VU</span>
+              <span className="">VU</span>
               <span className="text-lg">-Alumni</span>
             </div>
           </h3>
@@ -59,7 +59,7 @@ const Navbar = () => {
                     user?.photo ||
                     `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`
                   }
-                  className="rounded-full w-10 h-10 border border-primary object-cover"
+                  className="rounded-full w-10 h-10 border border-primary bg-white object-cover"
                   alt="User Image"
                 />
               </div>

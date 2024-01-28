@@ -1,28 +1,36 @@
 "use client";
-import { useState } from 'react';
-import axiosBase from '@/axios/baseURL';
+import { useState, useDeferredValue, useEffect } from "react";
+import axiosBase from "@/axios/baseURL";
 
 const Search = ({ setUsers, getData }: any) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
 
-    if (event.target.value === '') {
+    if (event.target.value === "") {
       getData();
-    } else {
-      handleSearch(event.target.value);
     }
   };
 
   const handleSearch = async (query: any) => {
     try {
-      const response = await axiosBase.get(`/user/search?q=${query || searchTerm}`);
+      const response = await axiosBase.get(
+        `/user/search?q=${query || searchTerm}`
+      );
       setUsers(response?.data?.users);
     } catch (error) {
-      console.error('Error fetching search results:', error);
+      console.error("Error fetching search results:", error);
     }
   };
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      handleSearch(searchTerm);
+    }, 100);
+
+    return () => clearTimeout(timerId);
+  }, [searchTerm]);
 
   return (
     <div>
@@ -34,7 +42,11 @@ const Search = ({ setUsers, getData }: any) => {
           className="py-2 px-4 outline-none"
           placeholder="Type.."
         />
-        <button type="button" onClick={handleSearch} className="text-sm px-4 border-l border-black/50">
+        <button
+          type="button"
+          onClick={handleSearch}
+          className="text-sm px-4 border-l border-black/50"
+        >
           Search
         </button>
       </div>

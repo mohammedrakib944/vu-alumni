@@ -93,7 +93,13 @@ const Edit = () => {
           register={register}
           errors={errors}
         />
-        <Input label="Photo" name="photo" register={register} errors={errors} />
+        <Input
+          label="Photo"
+          required={false}
+          name="photo"
+          register={register}
+          errors={errors}
+        />
         <Input
           type="email"
           label="Student Email"

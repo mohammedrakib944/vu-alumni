@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { SubmitHandler } from 'react-hook-form';
+import React, { useState, useEffect } from "react";
+import { SubmitHandler } from "react-hook-form";
 import axiosBase from "@/axios/baseURL";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import { useUser } from "@/context/userContext";
-
 
 interface JobExperience {
   companyName: string;
@@ -13,22 +12,18 @@ interface JobExperience {
   endDate: string;
 }
 
-interface Props {
-  user: any; // Define your user type here
-}
-
-const JobExperienceForm: React.FC<Props> = () => {
+const JobExperienceForm = () => {
   const { user }: any = useUser();
   console.log(user);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [jobExp, setJobExp] = useState<JobExperience[]>([
     {
-      companyName: '',
-      jobTitle: '',
-      jobDescription: '',
-      startDate: '',
-      endDate: ''
-    }
+      companyName: "",
+      jobTitle: "",
+      jobDescription: "",
+      startDate: "",
+      endDate: "",
+    },
   ]);
 
   useEffect(() => {
@@ -53,30 +48,36 @@ const JobExperienceForm: React.FC<Props> = () => {
     };
 
     try {
-      await axiosBase.put("/user/" + user._id, {jobExp: data}, { headers });
+      await axiosBase.put("/user/" + user._id, { jobExp: data }, { headers });
       setIsLoading(false);
-    //   window.location.reload();
+      //   window.location.reload();
     } catch (error) {
       toast.error("User update failed!");
       setIsLoading(false);
     }
   };
 
-  const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    index: number,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = event.target;
-    const list = [...jobExp];
+    const list: any = [...jobExp];
     list[index][name] = value;
     setJobExp(list);
   };
 
   const handleAddJobExp = () => {
-    setJobExp([...jobExp, {
-      companyName: '',
-      jobTitle: '',
-      jobDescription: '',
-      startDate: '',
-      endDate: ''
-    }]);
+    setJobExp([
+      ...jobExp,
+      {
+        companyName: "",
+        jobTitle: "",
+        jobDescription: "",
+        startDate: "",
+        endDate: "",
+      },
+    ]);
   };
 
   const handleRemoveJobExp = (index: number) => {
@@ -129,19 +130,29 @@ const JobExperienceForm: React.FC<Props> = () => {
               className="border-b w-1/2 focus:outline-none focus:border-blue-500"
             />
           </div>
-          <button onClick={() => handleRemoveJobExp(index)} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Remove</button>
+          <button
+            onClick={() => handleRemoveJobExp(index)}
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            Remove
+          </button>
         </div>
       ))}
-      <button onClick={handleAddJobExp} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-5">Add Job Experience</button>
+      <button
+        onClick={handleAddJobExp}
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-5"
+      >
+        Add Job Experience
+      </button>
       <button
         type="submit"
         onClick={() => onSubmit(jobExp)}
         disabled={isLoading}
         className={`bg-blue-500 text-white px-4 py-2 rounded ${
-          isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
+          isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
         }`}
       >
-        {isLoading ? 'Submitting...' : 'Submit Job Experiences'}
+        {isLoading ? "Submitting..." : "Submit Job Experiences"}
       </button>
     </div>
   );

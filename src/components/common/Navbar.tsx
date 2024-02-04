@@ -27,9 +27,10 @@ const Navbar = () => {
               </div>
             </h3>
           </Link>
-          {user?.isApproved === true ? (
+          {user?.isApproved === true && (
             <span className="ml-2 bg-green-700 text-green-100 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Approved</span>
-          ) : (
+          )}
+          {user?.isApproved === false && (
             <span className="ml-2 bg-red-700 text-red-100 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Under Review</span>
           )}
         </div>

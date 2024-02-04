@@ -26,6 +26,7 @@ const Search = ({ setUsers, getData }: any) => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
+      if (searchTerm === "") return;
       handleSearch(searchTerm);
     }, 100);
 

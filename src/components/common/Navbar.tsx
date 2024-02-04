@@ -17,15 +17,22 @@ const Navbar = () => {
   return (
     <div className="bg-primary/30 backdrop-blur-md z-20 sticky top-0">
       <div className="homeLayout py-[10px] flex items-center justify-between">
-        <Link href="/">
-          <h3 className="text-xl font-extrabold flex items-center gap-2">
-            <Image src={logo} width="30" alt="vu-logo" />
-            <div>
-              <span className="">VU</span>
-              <span className="text-lg">-Alumni</span>
-            </div>
-          </h3>
-        </Link>
+        <div className="flex items-center">
+          <Link href="/">
+            <h3 className="text-xl font-extrabold flex items-center gap-2">
+              <Image src={logo} width="30" alt="vu-logo" />
+              <div>
+                <span className="">VU</span>
+                <span className="text-lg">-Alumni</span>
+              </div>
+            </h3>
+          </Link>
+          {user?.isApproved === true ? (
+            <span className="ml-2 bg-green-700 text-green-100 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Approved</span>
+          ) : (
+            <span className="ml-2 bg-red-700 text-red-100 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Under Review</span>
+          )}
+        </div>
         <ul className="font-semibold flex items-center gap-3 md:gap-6 text-sm">
           {/* <li>
             <Link

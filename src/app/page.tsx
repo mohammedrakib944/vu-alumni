@@ -15,7 +15,7 @@ export default function Home() {
   const [users, setUsers] = useState<any>(null);
   const getData = async () => {
     try {
-      const response = await axiosBase.get("/user");
+      const response = await axiosBase.get("/user?isApproved=true");
       setUsers(response?.data?.users);
     } catch (error) {
       console.log(error);

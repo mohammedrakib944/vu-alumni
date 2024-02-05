@@ -31,7 +31,7 @@
     @apply max-w-[1100px] px-4 mx-auto;
   }
   .btn {
-    @apply bg-primary hover:bg-blue-600 rounded-full text-white px-8 capitalize border-black/30 hover:border-black/50;
+    @apply bg-primary hover:bg-orange-500 rounded-full text-white px-8 capitalize border-black/30 hover:border-black/50;
   }
   .btn-sm {
     @apply px-4 text-xs;

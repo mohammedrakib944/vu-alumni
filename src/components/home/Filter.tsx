@@ -1,18 +1,21 @@
-// blood group, deptname, batch, session, sessionyear
+// blood group, deptname, batch, sessionYear, sessionyear
+import axiosBase from "@/axios/baseURL";
 import React, { useEffect, useState } from "react";
 import { FaSortDown } from "react-icons/fa";
 
 // filter data
-const blood_groups = ["A+", "A-", "O+", "O-", "AB+", "B+", "B-"];
-const dept_name = ["CSE", "EEE", "English"];
-const batchs = [18, 19, 20, 21, 22, 23, 24];
-const sessions = [2022, 2023, 2024];
+const blood_groups = ["A+", "A-", "O+", "O-", "AB+", "AB-", "B+", "B-"];
+const dept_name = ["Pharmacy", "CSE", "EEE", "English", "Islamic History", "Business", "Economics", "JCMS", "Sociology", "Political Science", "Law"]
+const batchs = ["18", "19", "20", "21", "22", "23", "24", "25", "26", "27"];
+const sessionYears = ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
+const sessions = ["Spring", "Summer", "Fall"];
 
-const FilterSection = () => {
+const FilterSection = ({ setUsers, getData }: any) => {
   const [selectedBloodGroups, setSelectedBloodGroups] = useState<string[]>([]);
   const [deptNames, setDeptNames] = useState<string[]>([]);
-  const [batch, setBatch] = useState<number[]>([]);
-  const [session, setSession] = useState<number[]>([]);
+  const [batch, setBatch] = useState<string[]>([]);
+  const [sessionYear, setSessionYear] = useState<string[]>([]);
+  const [session, setSession] = useState<string[]>([]);
 
   const handleBloodGroupChange = (bloodGroup: string) => {
     const updatedBloodGroups = selectedBloodGroups.includes(bloodGroup)
@@ -29,30 +32,64 @@ const FilterSection = () => {
     setDeptNames(updatedDeptNames);
   };
 
-  const handleBatch = (batch_p: number) => {
+  const handleBatch = (batch_p: string) => {
     const updatedBatch = batch.includes(batch_p)
       ? batch.filter((g) => g !== batch_p)
       : [...batch, batch_p];
     setBatch(updatedBatch);
   };
 
-  const handleSession = (ses: number) => {
+  const handleSessionYear = (ses: string) => {
+    const updatedSessionYear = sessionYear.includes(ses)
+      ? sessionYear.filter((g) => g !== ses)
+      : [...sessionYear, ses];
+    setSessionYear(updatedSessionYear);
+  };
+
+  const handleSession = (ses: string) => {
     const updatedSession = session.includes(ses)
       ? session.filter((g) => g !== ses)
       : [...session, ses];
     setSession(updatedSession);
-  };
+  }
 
-  //   Form handler
-  const handleFilter = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleFilterReset = () => {
+    setSelectedBloodGroups([]);
+    setDeptNames([]);
+    setBatch([]);
+    setSessionYear([]);
+    setSession([]);
+    getData();
+  }
+
+  // Form handler
+  const handleFilterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const filterData = {
       selectedBloodGroups,
       deptNames,
       batch,
+      sessionYear,
       session,
     };
-    console.log("Filter data: ", filterData);
+    console.log(filterData);
+
+    let query = "";
+    for (let field in filterData) {
+      for (let val of filterData[field as keyof typeof filterData]) {
+        query += `${field}=${val}&`;
+      }
+    }
+
+    console.log({ query });
+
+    try {
+      const response = await axiosBase.get(`/user?isApproved=true&${query}`);
+      setUsers(response?.data?.users);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -60,7 +97,7 @@ const FilterSection = () => {
       <h2 className="mb-3 px-4 py-2 border-b">Filter</h2>
 
       <div>
-        <form onSubmit={handleFilter}>
+        <form onSubmit={handleFilterSubmit}>
           {/* Department  */}
           <CardColspan
             title="Department"
@@ -78,6 +115,13 @@ const FilterSection = () => {
           {/* Batch */}
           <CardColspan title="Batch" data={batchs} setterFunc={handleBatch} />
           <hr />
+          {/* Session Year */}
+          <CardColspan
+            title="Session Year"
+            data={sessionYears}
+            setterFunc={handleSessionYear}
+          />
+          <hr />
           {/* Session */}
           <CardColspan
             title="Session"
@@ -89,7 +133,8 @@ const FilterSection = () => {
           <div className="mt-8 flex px-3 items-center justify-center gap-2">
             <button
               className="w-full bg-gray-500 px-4 py-2 rounded-md text-sm text-white"
-              type="button"
+              type="reset"
+              onClick={handleFilterReset}
             >
               Reset
             </button>

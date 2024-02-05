@@ -168,9 +168,9 @@ const Edit = () => {
             {...register("session")}
             className="select select-bordered  w-full rounded-none inputs"
           >
-            <option value="spring">Spring</option>
-            <option value="summer">Summer</option>
-            <option value="fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            <option value="Fall">Fall</option>
           </select>
         </div>
         <Input

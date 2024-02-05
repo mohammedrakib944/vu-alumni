@@ -30,7 +30,7 @@ export default function Home() {
       <Hero setUsers={setUsers} getData={getData} />
       <div className="lg:grid lg:gap-6 lg:grid-cols-5">
         <div className="hidden lg:block lg:col-span-1 h-fit sticky top-16">
-          <FilterSection />
+          <FilterSection setUsers={setUsers} getData={getData} />
         </div>
         <div className="lg:col-span-4">
           <div className="flex justify-between gap-3 items-center mb-5">

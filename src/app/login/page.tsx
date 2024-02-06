@@ -111,6 +111,13 @@ const Login = () => {
           >
             Create Account
           </Link>
+          {" "} or {" "}
+          <Link
+            className="text-primary underline hover:text-blue-600"
+            href="/reset-password"
+          >
+            Reset Password
+          </Link>
         </div>
 
         {/* <p className="mt-5">

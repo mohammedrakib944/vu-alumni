@@ -81,11 +81,13 @@ const Navbar = () => {
                   <span>Profile</span>
                 </Link>
               </li>
-              <li>
-                <Link href={"/user/edit/" + user?._id}>
-                  <span>Edit Profile</span>
-                </Link>
-              </li>
+              {user?.userType !== "student" && (
+                <li>
+                  <Link href={"/approve"}>
+                    <span>Approve</span>
+                  </Link>
+                </li>
+              )}
               <li>
                 <button onClick={handleLogout}>Logout</button>
               </li>

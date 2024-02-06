@@ -103,7 +103,7 @@ const Profie = ({ params }: any) => {
             <tr>
               <th className="px-4 py-2 bg-gray-200">Company Name</th>
               <th className="px-4 py-2 bg-gray-200">Job Title</th>
-              <th className="px-4 py-2 bg-gray-200">Job Description</th>
+              <th className="px-4 py-2 bg-gray-200">Job Location</th>
               <th className="px-4 py-2 bg-gray-200">Start Date</th>
               <th className="px-4 py-2 bg-gray-200">End Date</th>
             </tr>
@@ -113,7 +113,7 @@ const Profie = ({ params }: any) => {
               <tr key={index}>
                 <td className="px-4 py-2">{job.companyName}</td>
                 <td className="px-4 py-2">{job.jobTitle}</td>
-                <td className="px-4 py-2">{job.jobDescription}</td>
+                <td className="px-4 py-2">{job.location}</td>
                 <td className="px-4 py-2">{job.startDate}</td>
                 <td className="px-4 py-2">{job.endDate}</td>
               </tr>

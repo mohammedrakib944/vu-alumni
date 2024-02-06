@@ -7,7 +7,7 @@ import { useUser } from "@/context/userContext";
 interface JobExperience {
   companyName: string;
   jobTitle: string;
-  jobDescription: string;
+  location: string;
   startDate: string;
   endDate: string;
 }
@@ -20,7 +20,7 @@ const JobExperienceForm = () => {
     {
       companyName: "",
       jobTitle: "",
-      jobDescription: "",
+      location: "",
       startDate: "",
       endDate: "",
     },
@@ -73,7 +73,7 @@ const JobExperienceForm = () => {
       {
         companyName: "",
         jobTitle: "",
-        jobDescription: "",
+        location: "",
         startDate: "",
         endDate: "",
       },
@@ -105,12 +105,12 @@ const JobExperienceForm = () => {
             placeholder="Job Title"
             className="border-b w-full mb-2 focus:outline-none focus:border-blue-500"
           />
-          <textarea
-            name="jobDescription"
-            value={item.jobDescription}
+          <input
+            name="location"
+            value={item.location}
             onChange={(event) => handleInputChange(index, event)}
-            placeholder="Job Description"
-            className="border w-full h-24 mb-2 focus:outline-none focus:border-blue-500"
+            placeholder="Job Location"
+            className="border-b w-full mb-2 focus:outline-none focus:border-blue-500"
           />
           <div className="flex mb-2">
             <input

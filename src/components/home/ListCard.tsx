@@ -11,7 +11,7 @@ const ListCard = ({ user }: any) => {
             `https://api.dicebear.com/7.x/notionists/svg?seed=${user?._id}`
           }
           className="w-[150px] md:w-[230px] h-[130px] md:h-[160px] object-cover bg-primary/70"
-          alt="Rakib"
+          alt={user?.name}
         />
 
         <div className="">

@@ -11,25 +11,25 @@ const sessionYears = ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2
 const sessions = ["Spring", "Summer", "Fall"];
 
 const FilterSection = ({ setUsers, getData }: any) => {
-  const [selectedBloodGroups, setSelectedBloodGroups] = useState<string[]>([]);
-  const [deptNames, setDeptNames] = useState<string[]>([]);
+  const [bloodGroup, setBloodGroup] = useState<string[]>([]);
+  const [deptName, setDeptName] = useState<string[]>([]);
   const [batch, setBatch] = useState<string[]>([]);
   const [sessionYear, setSessionYear] = useState<string[]>([]);
   const [session, setSession] = useState<string[]>([]);
 
-  const handleBloodGroupChange = (bloodGroup: string) => {
-    const updatedBloodGroups = selectedBloodGroups.includes(bloodGroup)
-      ? selectedBloodGroups.filter((group) => group !== bloodGroup)
-      : [...selectedBloodGroups, bloodGroup];
+  const handleBloodGroupChange = (bloodGroup_p: string) => {
+    const updatedBloodGroups = bloodGroup.includes(bloodGroup_p)
+      ? bloodGroup.filter((group) => group !== bloodGroup_p)
+      : [...bloodGroup, bloodGroup_p];
 
-    setSelectedBloodGroups(updatedBloodGroups);
+    setBloodGroup(updatedBloodGroups);
   };
 
-  const handleDeptName = (deptName: string) => {
-    const updatedDeptNames = deptNames.includes(deptName)
-      ? deptNames.filter((group) => group !== deptName)
-      : [...deptNames, deptName];
-    setDeptNames(updatedDeptNames);
+  const handleDeptName = (deptName_p: string) => {
+    const updatedDeptNames = deptName.includes(deptName_p)
+      ? deptName.filter((group) => group !== deptName_p)
+      : [...deptName, deptName_p];
+    setDeptName(updatedDeptNames);
   };
 
   const handleBatch = (batch_p: string) => {
@@ -39,10 +39,10 @@ const FilterSection = ({ setUsers, getData }: any) => {
     setBatch(updatedBatch);
   };
 
-  const handleSessionYear = (ses: string) => {
-    const updatedSessionYear = sessionYear.includes(ses)
-      ? sessionYear.filter((g) => g !== ses)
-      : [...sessionYear, ses];
+  const handleSessionYear = (sesYear: string) => {
+    const updatedSessionYear = sessionYear.includes(sesYear)
+      ? sessionYear.filter((g) => g !== sesYear)
+      : [...sessionYear, sesYear];
     setSessionYear(updatedSessionYear);
   };
 
@@ -55,8 +55,8 @@ const FilterSection = ({ setUsers, getData }: any) => {
 
 
   const handleFilterReset = () => {
-    setSelectedBloodGroups([]);
-    setDeptNames([]);
+    setBloodGroup([]);
+    setDeptName([]);
     setBatch([]);
     setSessionYear([]);
     setSession([]);
@@ -67,8 +67,8 @@ const FilterSection = ({ setUsers, getData }: any) => {
   const handleFilterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const filterData = {
-      selectedBloodGroups,
-      deptNames,
+      bloodGroup,
+      deptName,
       batch,
       sessionYear,
       session,

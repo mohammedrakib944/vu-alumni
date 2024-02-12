@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { AiOutlineLogin } from "react-icons/ai";
+import { AiOutlineLogin, AiOutlineUser, AiOutlineTeam } from "react-icons/ai";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "@/components/common/Input";
@@ -13,10 +13,12 @@ type Inputs = {
   password: string;
   email: string;
   mobile: string;
+  userType: "student" | "faculty";
 };
 
 const Registration = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [userType, setUserType] = useState<"student" | "faculty">("student");
   const {
     register,
     handleSubmit,
@@ -26,6 +28,10 @@ const Registration = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setIsLoading(true);
+
+    data.userType = userType;
+    if (userType === "faculty") data.studentId = "none";
+
     try {
       await axiosBase.post("/user", data);
       setIsLoading(false);
@@ -42,12 +48,29 @@ const Registration = () => {
       <Toaster />
       <h2 className="pt-8 text-center border-b pb-2">Create Account</h2>
       <form className="my-6" onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="Student ID"
-          name="studentId"
-          register={register}
-          errors={errors}
-        />
+        <div className="w-full flex items-center gap-3 justify-center mb-6">
+          <button
+            onClick={() => setUserType("student")}
+            type="button" 
+            className={`btn btn-sm rounded bg-white text-gray-800 hover:bg-gray-100 hover:text-gray-900 border-indigo-500 ${userType === 'student' && "border-b-4 border-indigo-500"}`}>
+            Register as Student <AiOutlineTeam />
+          </button>
+
+          <button
+            onClick={() => setUserType("faculty")} 
+            type="button" 
+            className={`btn btn-sm rounded bg-white text-gray-800 hover:bg-gray-100 hover:text-gray-900 border-indigo-500 ${userType === 'faculty' && "border-b-4 border-indigo-500"}`}>
+            Register as Teacher <AiOutlineUser />
+          </button>
+        </div>
+        {userType === "student" && (
+          <Input 
+            label="Student ID"
+            name="studentId"
+            register={register}
+            errors={errors}
+          />
+        )}
         <Input label="Name" name="name" register={register} errors={errors} />
         <Input label="Mobile" name="mobile" register={register} errors={errors} />
         <Input

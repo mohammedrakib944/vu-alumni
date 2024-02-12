@@ -130,17 +130,17 @@ const Edit = () => {
             {...register("deptName")}
             className="select select-bordered  w-full rounded-none inputs"
           >
-            <option value="Pharmacy">Pharmacy</option>
+            <option value="BA">BA</option>
             <option value="CSE">CSE</option>
+            <option value="Economics">Economics</option>
             <option value="EEE">EEE</option>
             <option value="English">English</option>
-            <option value="Islamic History">Islamic History</option>
-            <option value="Business">Business</option>
-            <option value="Economics">Economics</option>
             <option value="JCMS">JCMS</option>
-            <option value="Sociology">Sociology</option>
-            <option value="Political Science">Political Science</option>
             <option value="Law">Law</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Political Science">Political Science</option>
+            <option value="Public Health">Public Health</option>
+            <option value="Sociology">Sociology</option>
           </select>
         </div>
         <div className="mb-3">
@@ -149,17 +149,17 @@ const Edit = () => {
             {...register("programName")}
             className="select select-bordered  w-full rounded-none inputs"
           >
-            <option value="B Pharm Honors">B Pharm Honors</option>
+            <option value="BBA">BBA</option>
             <option value="B. Sc. in CSE">B. Sc. in CSE</option>
+            <option value="BSS Honors in Economics">BSS Honors in Economics</option>
             <option value="B. Sc. in EEE">B. Sc. in EEE</option>
             <option value="BA Honors in English">BA Honors in English</option>
-            <option value="BA in Islamic History">BA in Islamic History</option>
-            <option value="BBA">BBA</option>
-            <option value="BSS Honors in Economics">BSS Honors in Economics</option>
             <option value="BSS Honors in JCMS">BSS Honors in JCMS</option>
-            <option value="BSS Honors in Sociology">BSS Honors in Sociology</option>
-            <option value="BSS in Political Science">BSS in Political Science</option>
             <option value="LLB Honors">LLB Honors</option>
+            <option value="B Pharm Honors">B Pharm Honors</option>
+            <option value="BSS in Political Science">BSS in Political Science</option>
+            <option value="Masters in Public Health">Masters in Public Health</option>
+            <option value="BSS Honors in Sociology">BSS Honors in Sociology</option>
           </select>
         </div>
         <div className="mb-3">

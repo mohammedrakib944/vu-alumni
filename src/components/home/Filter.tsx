@@ -1,13 +1,13 @@
 // blood group, deptname, batch, sessionYear, sessionyear
 import axiosBase from "@/axios/baseURL";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { FaSortDown } from "react-icons/fa";
 
 // filter data
 const blood_groups = ["A+", "A-", "O+", "O-", "AB+", "AB-", "B+", "B-"];
-const dept_name = ["Pharmacy", "CSE", "EEE", "English", "Islamic History", "Business", "Economics", "JCMS", "Sociology", "Political Science", "Law"]
-const batchs = ["18", "19", "20", "21", "22", "23", "24", "25", "26", "27"];
-const sessionYears = ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
+const dept_name = ["BA", "CSE", "Economics", "EEE", "English", "JCMS", "Law", "Pharmacy", "Political Science", "Public Health", "Sociology"]
+const batchs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"];
+const sessionYears = ["2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"];
 const sessions = ["Spring", "Summer", "Fall"];
 
 const FilterSection = ({ setUsers, getData }: any) => {
@@ -52,20 +52,10 @@ const FilterSection = ({ setUsers, getData }: any) => {
       : [...session, ses];
     setSession(updatedSession);
   }
-
-
-  const handleFilterReset = () => {
-    setBloodGroup([]);
-    setDeptName([]);
-    setBatch([]);
-    setSessionYear([]);
-    setSession([]);
-    getData();
-  }
+  
 
   // Form handler
-  const handleFilterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFilterSubmit = async () => {
     const filterData = {
       bloodGroup,
       deptName,
@@ -78,7 +68,7 @@ const FilterSection = ({ setUsers, getData }: any) => {
     let query = "";
     for (let field in filterData) {
       for (let val of filterData[field as keyof typeof filterData]) {
-        query += `${field}=${val}&`;
+        query += `${field}=${encodeURIComponent(val)}&`;
       }
     }
 
@@ -92,12 +82,16 @@ const FilterSection = ({ setUsers, getData }: any) => {
     }
   };
 
+  useEffect(() => {
+    handleFilterSubmit();
+  }, [bloodGroup, deptName, batch, sessionYear, session]);
+
   return (
     <div className="p-2 rounded-md border">
       <h2 className="mb-3 px-4 py-2 border-b">Filter</h2>
 
       <div>
-        <form onSubmit={handleFilterSubmit}>
+        <div>
           {/* Department  */}
           <CardColspan
             title="Department"
@@ -115,13 +109,7 @@ const FilterSection = ({ setUsers, getData }: any) => {
           {/* Batch */}
           <CardColspan title="Batch" data={batchs} setterFunc={handleBatch} />
           <hr />
-          {/* Session Year */}
-          <CardColspan
-            title="Session Year"
-            data={sessionYears}
-            setterFunc={handleSessionYear}
-          />
-          <hr />
+
           {/* Session */}
           <CardColspan
             title="Session"
@@ -130,23 +118,13 @@ const FilterSection = ({ setUsers, getData }: any) => {
           />
           <hr />
 
-          <div className="mt-8 flex px-3 items-center justify-center gap-2">
-            <button
-              className="w-full bg-gray-500 px-4 py-2 rounded-md text-sm text-white"
-              type="reset"
-              onClick={handleFilterReset}
-            >
-              Reset
-            </button>
-            <button
-              className="w-full bg-primary hover:bg-orange-500 px-4 py-2 rounded-md text-sm text-white"
-              type="submit"
-            >
-              Filter
-            </button>
-          </div>
-          <br />
-        </form>
+          {/* Session Year */}
+          <CardColspan
+            title="Session Year"
+            data={sessionYears}
+            setterFunc={handleSessionYear}
+          />
+        </div>
       </div>
     </div>
   );

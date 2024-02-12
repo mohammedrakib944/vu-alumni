@@ -47,6 +47,7 @@ const ApproveUser = () => {
               <th>ID</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Mobile</th>
               <th>Blood</th>
               <th>Session</th>
               <th>Action</th>
@@ -58,6 +59,7 @@ const ApproveUser = () => {
                 <th>{user.studentId}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>{user.mobile}</td>
                 <td>{user.bloodGroup}</td>
                 <td>{user.sessionYear}</td>
                 <td>

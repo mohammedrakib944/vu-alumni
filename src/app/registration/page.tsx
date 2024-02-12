@@ -30,7 +30,7 @@ const Registration = () => {
     setIsLoading(true);
 
     data.userType = userType;
-    if (userType === "faculty") data.studentId = "none";
+    if (userType === "faculty") data.studentId = "0";
 
     try {
       await axiosBase.post("/user", data);

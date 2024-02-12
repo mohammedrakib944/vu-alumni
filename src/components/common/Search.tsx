@@ -45,7 +45,7 @@ const Search = ({ setUsers, getData }: any) => {
         />
         <button
           type="button"
-          onClick={handleSearch}
+          onClick={() => handleSearch(searchTerm)}
           className="text-sm px-4 border-l border-black/50"
         >
           Search
